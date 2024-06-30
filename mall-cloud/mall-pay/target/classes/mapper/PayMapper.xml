@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llf.mapper.PayMapper">
+    
+    <update id="updUserAcct">
+        update user_acct 
+        <set>
+        	<if test="bal != null and bal != ''">
+        		bal = #{bal}
+        	</if>
+        </set>
+        <where>
+        	<if test= "userId != null and userId != ''">
+       			userId = #{userId}
+       		</if>
+       		<if test= "acctNo != null and acctNo != ''">
+       			and acctNo = #{acctNo}
+       		</if>
+       	</where>
+    </update>
+    
+    <update id="updMerchanrAcct">
+        update merchant_acct 
+        set 
+        	bal = #{bal}
+        <where>
+        	<if test="merchantId != null and merchantId != ''">
+        		merchantId = #{merchantId}
+        	</if>
+        	<if test="acctNo != null and acctNo != ''">
+        		and acctNo = #{acctNo}
+        	</if>
+       	</where> 
+    </update>
+    
+    <select id="qryUserAcct" resultType="UserAcctPo" parameterType="UserAcctPo">
+    	select * 
+	   	from user_acct
+    	<where>
+        	<if test= "userId != null and userId != ''">
+       			userId = #{userId}
+       		</if>
+       		<if test= "acctNo != null and acctNo != ''">
+       			and acctNo = #{acctNo}
+       		</if>
+       	</where>
+    </select>
+    
+    <select id="qryMerchantAcct" resultType="MerchantAcctPo" parameterType="MerchantAcctPo">
+    	select * 
+	   	from merchant_acct
+    	<where>
+        	<if test="merchantId != null and merchantId != ''">
+        		merchantId = #{merchantId}
+        	</if>
+        	<if test="acctNo != null and acctNo != ''">
+        		and acctNo = #{acctNo}
+        	</if>
+       	</where> 
+    </select>
+    
+</mapper>

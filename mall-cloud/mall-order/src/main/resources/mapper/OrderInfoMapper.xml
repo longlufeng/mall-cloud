@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llf.mapper.OrderInfoMapper">
+    
+    <insert id="add">
+        insert into order_info
+        (
+	        orderId,
+	        userId,
+	        commodityId,
+	        commodityName,
+	        merchantId,
+	        merchantName,
+	        number,
+	        price,
+	        createDate,
+	        createTime
+		)
+        values
+        (
+	        #{orderId},
+	        #{userId},
+	        #{commodityId},
+	        #{commodityName},
+	        #{merchantId},
+	        #{merchantName},
+	        #{number},
+	        #{price},
+	        #{createDate},
+	        #{createTime}
+        )
+    </insert>
+    
+    <update id="upd">
+        update order_info 
+        <set>
+        	<if test="status != null and status != ''">
+        		status = #{status},
+        	</if>
+        	<if test="updateDate != null and updateDate != ''">
+        		updateDate = #{updateDate},
+        	</if>
+        	<if test="updateTime != null and updateTime != ''">
+        		updateTime = #{updateTime}
+        	</if>
+        </set>
+        where 
+       		orderId = #{orderId}
+    </update>
+    
+    <select id="qryById" resultType="OrderInfoPo" parameterType="OrderInfoQryDto">
+    	select * 
+	   	from order_info
+    	where 
+    		orderId = #{orderId}
+    </select>
+    
+    <select id="qryList" resultType="OrderInfoPo" parameterType="com.llf.dto.OrderInfoQryDto">
+    	select * 
+	   	from order_info
+    	<where>
+    		<if test="userId != null and userId != ''">
+        		userId = #{userId}
+        	</if>
+    		<if test="orderId != null and orderId != ''">
+        		orderId = #{orderId}
+        	</if>
+    		<if test="merchantId != null and merchantId != ''">
+        		and merchantId = #{merchantId}
+        	</if>
+        	<if test="commodityId != null and commodityId != ''">
+        		and commodityId = #{commodityId}
+        	</if>
+    	</where> 
+    		
+    </select>
+    
+    
+</mapper>

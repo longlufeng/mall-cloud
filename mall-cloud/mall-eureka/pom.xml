@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<parent>
+		<groupId>cn.lufeng.tech</groupId>
+		<artifactId>mall-cloud</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>mall-eureka</artifactId>
+	<packaging>jar</packaging>
+	<name>mall-eureka</name>
+	<description>mall-eureka for Spring Boot</description>
+	
+	<dependencies>
+		<!-- 引入 eureka-server -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profiles.active>dev</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profiles.active>test</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profiles.active>prod</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

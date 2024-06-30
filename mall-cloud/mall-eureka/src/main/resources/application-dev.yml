@@ -1,0 +1,16 @@
+server:
+  port: 8761
+  
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  server: 
+    # eureka server中将readWriteCacheMap缓存刷新到readCacheMap的时间
+    responseCacheUpdateIntervalMs: 1000
+    responseCacheAutoExpirationInSeconds: 180
+    # eureka server中将readWriteCacheMap缓存主动失效的时间，也就是检测readWriteCacheMap
+    eviction-interval-timer-in-ms: 1000
+

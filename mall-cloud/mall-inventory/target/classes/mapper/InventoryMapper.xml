@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llf.mapper.InventoryMapper">
+    
+    <insert id="add" parameterType="InventoryPo">
+    	INSERT INTO inventory.inventory
+		(
+			merchantId, 
+			comodityId, 
+			number, 
+			createDate, 
+			createTime
+		)
+		VALUES
+		(
+			#{merchantId}, 
+			#{comodityId}, 
+			#{number}, 
+			#{createDate}, 
+			#{createTime}
+		)
+    </insert>
+    
+    <update id="upd" parameterType="InventoryPo">
+        update inventory.inventory 
+        set
+        	number=#{number},
+        	updateDate=#{updateDate},
+        	updateTime=#{updateTime}
+        where 
+       		merchantId=#{merchantId}
+       	and
+       		comodityId=#{comodityId}
+    </update>
+    
+    <select id="qry" parameterType="InventoryPo" resultType="InventoryPo">
+    	select number 
+    	from inventory.inventory
+    	where 
+       		merchantId=#{merchantId}
+       	and
+       		comodityId=#{comodityId}
+    </select>
+    
+</mapper>
