@@ -11,6 +11,8 @@ public class DateUtil {
 	
 	static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
+	static SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
 	public static String getCurDate() {
 		String curDate = sdf1.format(new Date());
 		return curDate;
